@@ -8,7 +8,7 @@ import { BsCart2 } from "react-icons/bs";
 
 function HeaderUp() {
   return (
-    <div className="bg-white h-30 border-b-[1px] border-gray-200">
+    <div className="bg-white h-24 border-b-[1px] border-gray-200">
       <div className="max-w-7xl mx-auto flex items-center justify-between h-full">
         <div>
           <Link to="/">
@@ -22,7 +22,7 @@ function HeaderUp() {
         <div className="flex items-center">
           <input
             type="text"
-            className="rounded-2xl bg-[#f6f6f6] w-xl py-3 px-4 outline-none text-sm focus:placeholder:text-transparent shadow-[0_0_5px_rgba(0,0,0,0.1)] animate-glow"
+            className="rounded-2xl bg-[#f6f6f6] w-xl py-3 px-4 outline-none text-sm focus:placeholder:text-transparent border border-transparent focus:border-slate-200"
             placeholder="Search products..."
           />
           <button className="-ml-10 cursor-pointer hover:text-[#fc5c50] transition-colors">

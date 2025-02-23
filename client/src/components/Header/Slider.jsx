@@ -11,7 +11,7 @@ import { MdOutlineArrowForward } from "react-icons/md";
 
 function Slider() {
   return (
-    <div className="bg-[url(./assets/background.jpg)] bg-red-500 px-5 py-20 min-h-[550px] bg-no-repeat bg-cover flex items-center">
+    <div className="bg-[url(./assets/background.jpg)] bg-red-500 px-5 py-10 min-h-[578px] bg-no-repeat bg-cover flex items-center">
       <div className="w-full p-5 bg-[#fbf0e6] rounded">
         <Swiper
           navigation={true}
@@ -23,8 +23,8 @@ function Slider() {
           slidesPerView={1}
           loop={true}
         >
-          <SwiperSlide className="p-5">
-            <div className="flex items-center justify-between gap-20">
+          <SwiperSlide className="p-3">
+            <div className="flex items-center justify-center gap-20">
               <div className="flex flex-col items-start ml-0 md:ml-30">
                 <span className="text-sm text-slate-400 uppercase mb-8">
                   The Best of 2024
@@ -46,16 +46,13 @@ function Slider() {
                   />
                 </button>
               </div>
-              <div className="pr-10">
-                <img
-                  src="./assets/book1.png"
-                  alt="book"
-                />
+              <div className="pr-20 h-98">
+                <img src="./assets/book1.png" alt="book" className="h-full object-cover" />
               </div>
             </div>
           </SwiperSlide>
-          <SwiperSlide className="p-5">
-            <div className="flex items-center justify-between gap-20">
+          <SwiperSlide className="p-3">
+            <div className="flex items-center justify-center gap-20">
               <div className="flex flex-col items-start ml-0 md:ml-30">
                 <span className="text-sm text-slate-400 uppercase mb-8">
                   Editor Choice
@@ -77,11 +74,8 @@ function Slider() {
                   />
                 </button>
               </div>
-              <div className="pr-10">
-                <img
-                  src="./assets/book2.png"
-                  alt="book"
-                />
+              <div className="pr-20 h-98">
+                <img src="./assets/book2.png" alt="book" className="h-full" />
               </div>
             </div>
           </SwiperSlide>

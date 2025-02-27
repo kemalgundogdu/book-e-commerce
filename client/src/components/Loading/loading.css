@@ -1,0 +1,12 @@
+.loader {
+  height: 100px;
+  width: 1%;
+  text-align: center;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.loader svg path,
+.loader svg rect {
+  fill: #fc5c50;
+}

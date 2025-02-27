@@ -11,7 +11,7 @@ import { MdOutlineArrowForward } from "react-icons/md";
 
 function Slider() {
   return (
-    <div className="bg-[url(./assets/background.jpg)] bg-red-500 px-5 py-10 min-h-[578px] bg-no-repeat bg-cover flex items-center">
+    <div className="bg-[url(./assets/background.jpg)] bg-[#fbf0e6] px-5 py-10 min-h-[578px] bg-no-repeat bg-cover flex items-center">
       <div className="w-full p-5 bg-[#fbf0e6] rounded">
         <Swiper
           navigation={true}
@@ -47,7 +47,11 @@ function Slider() {
                 </button>
               </div>
               <div className="pr-20 h-98">
-                <img src="./assets/book1.png" alt="book" className="h-full object-cover" />
+                <img
+                  src="./assets/book1.png"
+                  alt="book"
+                  className="h-full object-cover"
+                />
               </div>
             </div>
           </SwiperSlide>

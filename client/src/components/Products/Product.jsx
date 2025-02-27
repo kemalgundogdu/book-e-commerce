@@ -4,22 +4,22 @@ import { Link } from "react-router";
 // icons
 import { MdOutlineArrowForward } from "react-icons/md";
 
-function Product() {
+function Product({ book }) {
   return (
     <div>
       <Link>
         <img
-          className="rounded-2xl transition-all w-full object-cover hover:scale-[0.95] mb-3"
-          src="https://m.media-amazon.com/images/I/51V+t0oCWUL._SY445_SX342_.jpg"
-          alt="book"
+          className="rounded-2xl transition-all w-full object-cover hover:scale-[0.95] mb-3 h-70"
+          src={book.image}
+          alt={book.name}
         />
       </Link>
       <Link>
-        <h3 className="font-semibold text-md">The Book of Bill</h3>
+        <h3 className="font-semibold text-md">{book.name}</h3>
       </Link>
-      <span className="text-sm text-gray-600 block">Alex Hirsch</span>
+      <span className="text-sm text-gray-600 block">{book.author}</span>
       <span className="text-lg font-semibold text-[#fc5c50] block mt-1">
-        $36.40
+        ${book.price}
       </span>
       <button className="pr-5 py-3 flex items-center gap-2 cursor-pointer group transition-all hover:bg-white text-md">
         Add to Cart{" "}

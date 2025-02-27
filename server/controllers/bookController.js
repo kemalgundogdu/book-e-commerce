@@ -9,6 +9,19 @@ const allListBook = async (req, res) => {
   }
 };
 
+const categoryBook = async (req, res) => {
+  try {
+    const { category } = req.params;
+    const books = await Book.find({ category: category });
+    if (!books || books.length === 0) {
+      return res.status(200).json([]);
+    }
+    res.status(200).json(books);
+  } catch (error) {
+    res.status(400).json({ message: "Books not listed", error });
+  }
+};
+
 const createBook = async (req, res) => {
   try {
     const {
@@ -40,4 +53,4 @@ const createBook = async (req, res) => {
   }
 };
 
-module.exports = { createBook, allListBook };
+module.exports = { createBook, allListBook, categoryBook };

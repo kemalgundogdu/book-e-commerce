@@ -13,3 +13,10 @@ export const getCategoryBooks = async (category) => {
   );
   return response.data;
 };
+
+export const getBook = async (name) => {
+  const response = await axios.get(
+    `${import.meta.env.VITE_API_URL}book/${name}`
+  );
+  return response.data;
+}

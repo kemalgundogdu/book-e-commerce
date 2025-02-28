@@ -22,6 +22,17 @@ const categoryBook = async (req, res) => {
   }
 };
 
+const oneBook = async (req, res) => {
+  try {
+    const { name } = req.params;
+    const book = await Book.findOne({ slug: name });
+    if (!book || book.length === 0) return res.status(200).json({});
+    res.status(200).json(book);
+  } catch (error) {
+    res.status(400).json({ message: "Book not fined", error });
+  }
+};
+
 const createBook = async (req, res) => {
   try {
     const {
@@ -55,4 +66,4 @@ const createBook = async (req, res) => {
   }
 };
 
-module.exports = { createBook, allListBook, categoryBook };
+module.exports = { createBook, allListBook, categoryBook, oneBook };

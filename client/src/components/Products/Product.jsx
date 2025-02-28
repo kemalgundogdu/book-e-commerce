@@ -3,18 +3,20 @@ import React from "react";
 import { Link } from "react-router";
 // icons
 import { MdOutlineArrowForward } from "react-icons/md";
+// slugify
+import slugify from 'react-slugify';
 
 function Product({ book }) {
   return (
     <div>
-      <Link>
+      <Link to={'/book/' + slugify(book.slug)}>
         <img
           className="rounded-2xl transition-all w-full object-cover hover:scale-[0.95] mb-3 h-70"
           src={book.image}
           alt={book.name}
         />
       </Link>
-      <Link>
+      <Link to={'/book/' + slugify(book.slug)}>
         <h3 className="font-semibold text-md">{book.name}</h3>
       </Link>
       <span className="text-sm text-gray-600 block">{book.author}</span>

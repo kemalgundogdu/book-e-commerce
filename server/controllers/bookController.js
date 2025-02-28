@@ -26,6 +26,7 @@ const createBook = async (req, res) => {
   try {
     const {
       name,
+      slug,
       image,
       author,
       category,
@@ -37,6 +38,7 @@ const createBook = async (req, res) => {
     } = req.body;
     const newBook = new Book({
       name,
+      slug,
       image,
       author,
       category,

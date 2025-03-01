@@ -19,4 +19,9 @@ export const getBook = async (name) => {
     `${import.meta.env.VITE_API_URL}book/${name}`
   );
   return response.data;
-}
+};
+
+export const searchBooks = async (name) => {
+  const response = await axios.get(`${import.meta.env.VITE_API_URL}book/s/${name}`);
+  return response.data;
+};

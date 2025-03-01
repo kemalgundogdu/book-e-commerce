@@ -1,4 +1,4 @@
-import React, { use, useEffect } from "react";
+import React, { useEffect } from "react";
 // components
 import Header from "../components/Header";
 import Product from "../components/Products/Product";

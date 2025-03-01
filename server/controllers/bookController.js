@@ -29,7 +29,19 @@ const oneBook = async (req, res) => {
     if (!book || book.length === 0) return res.status(200).json({});
     res.status(200).json(book);
   } catch (error) {
-    res.status(400).json({ message: "Book not fined", error });
+    res.status(400).json({ message: "Book not find", error });
+  }
+};
+
+const searchBook = async (req, res) => {
+  try {
+    const { name } = req.params;
+    if (!name)
+      return res.status(400).json({ message: "Query name is required" });
+    const books = await Book.find({ name: { $regex: name, $options: "i" } });
+    res.status(200).json(books);
+  } catch (error) {
+    res.status(400).json({ message: "Books not find", error });
   }
 };
 
@@ -66,4 +78,4 @@ const createBook = async (req, res) => {
   }
 };
 
-module.exports = { createBook, allListBook, categoryBook, oneBook };
+module.exports = { createBook, allListBook, categoryBook, oneBook, searchBook };

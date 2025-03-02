@@ -37,14 +37,26 @@ function Home() {
   // category books
   const dispatch = useDispatch();
   const books = useSelector(selectCategoryBooks);
-  const status = useSelector((state) => state.categoryBooks.status);
-  const error = useSelector((state) => state.categoryBooks.error);
   useEffect(() => {
-    console.log(status);
-    console.log(error);
-
     dispatch(fetchCategoryBooks(book.category));
   }, [dispatch, book.category]);
+
+  // add to cart
+  const handleCart = (book, quantity) => {
+    // get cart from local storage
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    // check if book already exists in cart
+    const bookIndex = cart.findIndex((item) => item._id === book._id);
+    if (bookIndex !== -1) {
+      // update quantity
+      cart[bookIndex].quantity += quantity;
+    } else {
+      // add book to cart
+      cart.push({ ...book, quantity });
+    }
+    // save cart to local storage
+    localStorage.setItem("cart", JSON.stringify(cart));
+  };
 
   return (
     <div>
@@ -103,14 +115,20 @@ function Home() {
                 </div>
               </div>
               {/* add to cart */}
-              <button className="bg-[#FF4C29] text-white py-3 px-5 rounded-3xl mt-5 flex items-center gap-3 cursor-pointer border border-transparent hover:bg-[#ff2a00] hover:border-[#333333] transition-colors">
+              <button
+                onClick={() => handleCart(book, quantity)}
+                className="bg-[#FF4C29] text-white py-3 px-5 rounded-3xl mt-5 flex items-center gap-3 cursor-pointer border border-transparent hover:bg-[#ff2a00] hover:border-[#333333] transition-colors"
+              >
                 <BsCart2 size="20" />
                 Add to Cart
               </button>
             </div>
             <p className="text-sm mt-5">
               <span className="opacity-60 text-[#666666]">Category: </span>{" "}
-              <Link className="text-[#333333] font-semibold capitalize">
+              <Link
+                to={"/category/" + book.category}
+                className="text-[#333333] font-semibold capitalize"
+              >
                 {book.category}
               </Link>
             </p>

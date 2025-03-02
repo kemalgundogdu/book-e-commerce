@@ -51,8 +51,11 @@ function HeaderUp() {
           <Link className="cursor-pointer hover:bg-gray-100 hover:text-[#fc5c50] transition-colors rounded-full p-3">
             <FiUser size="20" />
           </Link>
-          <Link className="cursor-pointer hover:bg-gray-100 hover:text-[#fc5c50] transition-colors rounded-full p-3">
-            <BsCart2 size="20" />
+          <Link
+            to={"/cart"}
+            className="cursor-pointer hover:bg-gray-100 hover:text-[#fc5c50] transition-colors rounded-full p-3"
+          >
+            <BsCart2 size="20" className="cursor-pointer" />
           </Link>
         </div>
       </div>

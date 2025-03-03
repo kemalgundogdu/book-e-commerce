@@ -7,11 +7,17 @@ import { Link, useNavigate } from "react-router-dom";
 // formik
 import { Formik, Form, Field } from "formik";
 // api
-import { login, getCurrentUser } from "../../api/userApi";
+import { login } from "../../api/userApi";
+// toast
+import { toast } from 'react-toastify';
+// redux
+import { useDispatch } from "react-redux";
+import { loginAsync } from "../../stores/Auth";
 
 function Login() {
   const [error, setError] = useState(null);
   const Navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const initialValues = {
     email: "",
@@ -21,9 +27,10 @@ function Login() {
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       setSubmitting(true);
-      await login(values);
+      await dispatch(loginAsync(values)).unwrap();
       resetForm();
       setError(null);
+      toast.success("Login success!");
       Navigate("/");
     } catch (error) {
       setError(error.response?.data?.message);

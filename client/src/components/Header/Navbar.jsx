@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // router
 import { NavLink } from "react-router";
 // icons
@@ -15,7 +15,11 @@ function Navbar() {
       <div className="flex items-center gap-35 h-26 justify-center">
         <NavLink
           to={"/category/romance"}
-          className={`flex items-center justify-center flex-col gap-1 group`}
+          className={({ isActive }) =>
+            `flex items-center justify-center flex-col gap-1 group ${
+              isActive ? "text-[#fc5c50]" : ""
+            }`
+          }
         >
           <GiSunkenEye
             size={44}
@@ -25,7 +29,11 @@ function Navbar() {
         </NavLink>
         <NavLink
           to={"/category/fantasy"}
-          className="flex items-center justify-center flex-col gap-1 group"
+          className={({ isActive }) =>
+            `flex items-center justify-center flex-col gap-1 group ${
+              isActive ? "text-[#fc5c50]" : ""
+            }`
+          }
         >
           <GiFrostfire
             size={44}
@@ -35,7 +43,11 @@ function Navbar() {
         </NavLink>
         <NavLink
           to={"/category/drama"}
-          className="flex items-center justify-center flex-col gap-1 group"
+          className={({ isActive }) =>
+            `flex items-center justify-center flex-col gap-1 group ${
+              isActive ? "text-[#fc5c50]" : ""
+            }`
+          }
         >
           <GiChewedHeart
             size={44}
@@ -45,7 +57,11 @@ function Navbar() {
         </NavLink>
         <NavLink
           to={"/category/classic"}
-          className="flex items-center justify-center flex-col gap-1 group"
+          className={({ isActive }) =>
+            `flex items-center justify-center flex-col gap-1 group ${
+              isActive ? "text-[#fc5c50]" : ""
+            }`
+          }
         >
           <GiWorld
             size={44}
@@ -55,7 +71,11 @@ function Navbar() {
         </NavLink>
         <NavLink
           to={"/category/fiction"}
-          className="flex items-center justify-center flex-col gap-1 group"
+          className={({ isActive }) =>
+            `flex items-center justify-center flex-col gap-1 group ${
+              isActive ? "text-[#fc5c50]" : ""
+            }`
+          }
         >
           <GiUfo
             size={44}
@@ -65,7 +85,11 @@ function Navbar() {
         </NavLink>
         <NavLink
           to={"/category/philosophy"}
-          className="flex items-center justify-center flex-col gap-1 group"
+          className={({ isActive }) =>
+            `flex items-center justify-center flex-col gap-1 group ${
+              isActive ? "text-[#fc5c50]" : ""
+            }`
+          }
         >
           <GiBrainTentacle
             size={44}

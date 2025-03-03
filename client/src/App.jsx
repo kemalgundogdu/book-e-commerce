@@ -14,9 +14,26 @@ import Search from "./pages/Web/Search";
 import Cart from "./pages/Web/Cart";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
+import Profile from "./pages/Web/Profile";
+
+// components
+// login control
+import ProtectedRoute from "./components/ProtectedRoute";
+
+// user thunk & redux
+import { fetchUser } from "./stores/Auth";
+import { useDispatch } from "react-redux";
+
+// toast
+import { ToastContainer } from "react-toastify";
 
 // scroll to top
 function ScrollToTop() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, [dispatch]);
+
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -37,9 +54,26 @@ function App() {
           <Route path="/category/:category" element={<Category />} />
           <Route path="/s/:query" element={<Search />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route
+            path="/login"
+            element={
+              <ProtectedRoute restrictAuthenticated>
+                <Login />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <ProtectedRoute restrictAuthenticated>
+                <Register />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
+        <ToastContainer />
       </Router>
     </div>
   );

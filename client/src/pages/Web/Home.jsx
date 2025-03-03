@@ -9,8 +9,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchBooks, selectBooks } from "../../stores/Books.jsx";
 
 function Home() {
-  const dispatch = useDispatch();
   const books = useSelector(selectBooks);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchBooks());
   }, [dispatch]);

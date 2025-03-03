@@ -8,6 +8,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 // api
 import { register } from "../../api/userApi";
+// toast
+import { toast } from 'react-toastify';
 
 function Register() {
   const [error, setError] = useState(null);
@@ -23,6 +25,7 @@ function Register() {
       setSubmitting(true);
       await register(values);
       resetForm();
+      toast.success("Register success!");
       Navigate("/login");
     } catch (error) {
       setError(error.response?.data?.message);

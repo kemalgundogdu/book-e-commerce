@@ -7,6 +7,7 @@ connectDB();
 
 // routes
 const bookRoutes = require("./routes/bookRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 app.use(express.json());
 app.use(cors());
@@ -16,6 +17,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Backend running 🚀" });
 });
 app.use("/book", bookRoutes);
+app.use("/user", userRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running to port: `, port);

@@ -7,11 +7,13 @@ import {
 } from "react-router";
 
 // pages
-import Home from "./pages/Home";
-import Category from "./pages/Category";
-import BookDetail from "./pages/BookDetail";
-import Search from "./pages/Search";
-import Cart from "./pages/Cart";
+import Home from "./pages/Web/Home";
+import Category from "./pages/Web/Category";
+import BookDetail from "./pages/Web/BookDetail";
+import Search from "./pages/Web/Search";
+import Cart from "./pages/Web/Cart";
+import Login from "./pages/Auth/Login";
+import Register from "./pages/Auth/Register";
 
 // scroll to top
 function ScrollToTop() {
@@ -35,6 +37,8 @@ function App() {
           <Route path="/category/:category" element={<Category />} />
           <Route path="/s/:query" element={<Search />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </Router>
     </div>

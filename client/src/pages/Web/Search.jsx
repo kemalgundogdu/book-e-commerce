@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 // components
-import Header from "../components/Header";
-import Product from "../components/Products/Product";
-import Footer from "../components/Footer";
-import Loading from "../components/Loading/index.jsx";
+import Header from "../../components/Header";
+import Product from "../../components/Products/Product";
+import Footer from "../../components/Footer";
+import Loading from "../../components/Loading/index.jsx";
 // router
 import { useParams } from "react-router";
 // redux
@@ -12,7 +12,7 @@ import {
   fetchSearchBooks,
   selectSearchBooks,
   setSearchBooks,
-} from "../stores/SearchBooks.jsx";
+} from "../../stores/SearchBooks.jsx";
 
 function Search() {
   const { query } = useParams();

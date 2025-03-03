@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 // components
-import Header from "../components/Header";
-import Slider from "../components/Header/Slider";
-import Product from "../components/Products/Product";
-import Footer from "../components/Footer";
+import Header from "../../components/Header";
+import Slider from "../../components/Header/Slider";
+import Product from "../../components/Products/Product";
+import Footer from "../../components/Footer";
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBooks, selectBooks } from "../stores/Books.jsx";
+import { fetchBooks, selectBooks } from "../../stores/Books.jsx";
 
 function Home() {
   const dispatch = useDispatch();

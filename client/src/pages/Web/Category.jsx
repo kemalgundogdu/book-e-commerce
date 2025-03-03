@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
 // components
-import Header from "../components/Header";
-import Product from "../components/Products/Product";
-import Footer from "../components/Footer";
-import Loading from "../components/Loading/index.jsx";
+import Header from "../../components/Header";
+import Product from "../../components/Products/Product";
+import Footer from "../../components/Footer";
+import Loading from "../../components/Loading/index.jsx";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchCategoryBooks,
   selectCategoryBooks,
   setCategoryBooks,
-} from "../stores/CategoryBooks.jsx";
+} from "../../stores/CategoryBooks.jsx";
 // router
 import { useParams } from "react-router";
 

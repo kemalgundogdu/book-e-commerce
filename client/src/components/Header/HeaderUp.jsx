@@ -48,8 +48,11 @@ function HeaderUp() {
           </form>
         </div>
         <div className="flex items-center gap-2">
-          <Link className="cursor-pointer hover:bg-gray-100 hover:text-[#fc5c50] transition-colors rounded-full p-3">
-            <FiUser size="20" />
+          <Link
+            to={"/login"}
+            className="cursor-pointer hover:bg-gray-100 hover:text-[#fc5c50] transition-colors rounded-full p-3"
+          >
+            <FiUser size="20" className="cursor-pointer"/>
           </Link>
           <Link
             to={"/cart"}

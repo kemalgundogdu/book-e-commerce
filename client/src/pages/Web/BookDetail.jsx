@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 // components
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 // icons
 import { BsCart2 } from "react-icons/bs";
 // router
 import { Link, useParams } from "react-router";
 // api
-import { getBook } from "../api/booksApi";
+import { getBook } from "../../api/booksApi";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchCategoryBooks,
   selectCategoryBooks,
-} from "../stores/CategoryBooks.jsx";
-import Product from "../components/Products/Product.jsx";
+} from "../../stores/CategoryBooks.jsx";
+import Product from "../../components/Products/Product.jsx";
 
 function Home() {
   const [quantity, setQuantity] = useState(1);

@@ -10,6 +10,7 @@ import { Formik, Form, Field } from "formik";
 import { register } from "../../api/userApi";
 
 function Register() {
+  const [error, setError] = useState(null);
   const Navigate = useNavigate();
 
   const initialValues = {
@@ -19,11 +20,14 @@ function Register() {
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
+      setSubmitting(true);
       await register(values);
       resetForm();
       Navigate("/login");
     } catch (error) {
-      console.log(error);
+      setError(error.response?.data?.message);
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -84,6 +88,9 @@ function Register() {
                 Login
               </Link>
             </p>
+            {error && (
+              <p className="text-sm text-red-500 mt-2">Error: {error}</p>
+            )}
           </div>
         </div>
       </div>

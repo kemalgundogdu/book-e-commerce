@@ -20,4 +20,42 @@ const register = async (req, res) => {
   }
 };
 
-module.exports = { register };
+const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: "User not found" });
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    // create token
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "1d",
+    });
+    // send token in cookie
+    res.cookie("token", token, { httpOnly: true, sameSite: 'lax', secure: false });
+    res.status(200).json({ message: "Login success" });
+  } catch (error) {
+    res.status(400).json({ message: "User not found", error });
+  }
+};
+
+const me = async (req, res) => {
+  const cookies = req.cookies || {};
+  const token = cookies.token;
+  if (!token) return res.status(401).json({ message: "Giriş yapılmadı" });
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = { id: decoded.id };
+    res.json({ user });
+  } catch (error) {
+    res.status(401).json({ message: "Geçersiz token" });
+  }
+};
+
+module.exports = { register, login, me };

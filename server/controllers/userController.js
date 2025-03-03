@@ -33,7 +33,7 @@ const login = async (req, res) => {
     }
 
     // create token
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
     // send token in cookie
@@ -51,7 +51,7 @@ const me = async (req, res) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const user = { id: decoded.id };
+    const user = { id: decoded.id, email: decoded.email };
     res.json({ user });
   } catch (error) {
     res.status(401).json({ message: "Geçersiz token" });

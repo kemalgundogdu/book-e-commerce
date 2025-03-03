@@ -8,7 +8,8 @@ const ProtectedRoute = ({ children, restrictAuthenticated }) => {
  
   if (restrictAuthenticated && user) {
     return <Navigate to="/" replace />;
-  }
+  } 
+
 
   return children;
 };

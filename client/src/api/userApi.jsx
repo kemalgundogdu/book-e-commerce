@@ -31,3 +31,13 @@ export const getCurrentUser = async () => {
   });
   return response.data.user;
 };
+
+export const logout = async () => {
+  try {
+    await api.get(`user/logout`, {
+      withCredentials: true, // Cookie’yi göndermek için
+    });
+  } catch (error) {
+    return error.response.data;
+  }
+};

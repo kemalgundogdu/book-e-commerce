@@ -15,8 +15,11 @@ import Cart from "./pages/Web/Cart";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import Profile from "./pages/Web/Profile";
+import NotFound from "./pages/404";
+// admin pages
+import AdminHome from "./pages/Admin";
+import Products from "./pages/Admin/Products";
 
-// components
 // login control
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -71,7 +74,12 @@ function App() {
             }
           />
           <Route path="/profile" element={<Profile />} />
-          <Route path="*" element={<h1>404 Not Found</h1>} />
+          {/* admin pages */}
+          <Route path="/admin/" element={<AdminHome />} />
+          <Route path="/admin/home" element={<AdminHome />} />
+          <Route path="/admin/products" element={<Products />} />
+          {/* 404 */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <ToastContainer />
       </Router>

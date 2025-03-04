@@ -34,7 +34,7 @@ const login = async (req, res) => {
 
     // create token
     const token = jwt.sign(
-      { id: user._id, email: user.email, name: user.name },
+      { id: user._id, email: user.email, name: user.name, role: user.role },
       process.env.JWT_SECRET,
       {
         expiresIn: "1d",
@@ -59,8 +59,9 @@ const me = async (req, res) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const user = { id: decoded.id, email: decoded.email, name: decoded.name };
+    const user = { id: decoded.id, email: decoded.email, name: decoded.name, role: decoded.role };
     res.json({ user });
+  
   } catch (error) {
     res.status(401).json({ message: "Geçersiz token" });
   }

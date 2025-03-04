@@ -5,12 +5,14 @@ import { useNavigate } from "react-router";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { logoutAsync, selectUser } from "../../stores/Auth.jsx";
+// link
+import { Link } from "react-router";
 
 function Profile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [user, setUser] = useState({});
-  
+
   // get user from redux
   const userRedux = useSelector(selectUser);
   useEffect(() => {
@@ -30,6 +32,7 @@ function Profile() {
       <div className="max-w-7xl mx-auto py-8 font-sans min-h-[90vh]">
         <div>
           <h1 className="text-2xl font-bold">Profil Sayfası</h1>
+          {user.role==="admin" && <Link to="/admin/home">Admin</Link>}
 
           <div className="mt-4">
             <p>

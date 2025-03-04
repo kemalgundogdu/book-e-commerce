@@ -33,11 +33,19 @@ const login = async (req, res) => {
     }
 
     // create token
-    const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, {
-      expiresIn: "1d",
-    });
+    const token = jwt.sign(
+      { id: user._id, email: user.email, name: user.name },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1d",
+      }
+    );
     // send token in cookie
-    res.cookie("token", token, { httpOnly: true, sameSite: 'lax', secure: false });
+    res.cookie("token", token, {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: false,
+    });
     res.status(200).json({ message: "Login success" });
   } catch (error) {
     res.status(400).json({ message: "User not found", error });
@@ -51,7 +59,7 @@ const me = async (req, res) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const user = { id: decoded.id, email: decoded.email };
+    const user = { id: decoded.id, email: decoded.email, name: decoded.name };
     res.json({ user });
   } catch (error) {
     res.status(401).json({ message: "Geçersiz token" });
@@ -61,6 +69,6 @@ const me = async (req, res) => {
 const logout = async (req, res) => {
   res.clearCookie("token");
   res.json({ message: "Logged out" });
-}
+};
 
 module.exports = { register, login, logout, me };

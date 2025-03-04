@@ -30,8 +30,8 @@ function AdminHome() {
         <Navbar />
         {/* content */}
         <div>
-          <h1 className="text-2xl font-bold">Yönetim Paneli</h1>
-          <p>Anasayfa</p>
+          <h1 className="text-2xl font-bold">Dashboard</h1>
+          <p>Statistics</p>
         </div>
       </div>
       <Footer />

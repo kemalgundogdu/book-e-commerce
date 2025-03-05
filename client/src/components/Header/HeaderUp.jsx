@@ -32,7 +32,7 @@ function HeaderUp() {
       <div className="max-w-7xl mx-auto flex items-center justify-between h-full">
         <div className="cursor-pointer">
           <NavLink to="/">
-            <img src="../assets/logo.svg" width={150} alt="book store logo" />
+            <img src="http://localhost:5173/assets/logo.svg" width={150} alt="book store logo" />
           </NavLink>
         </div>
         <div className="flex items-center">

@@ -27,7 +27,7 @@ function AdminHome() {
       <HeaderUp />
       <div className="max-w-7xl mx-auto py-8 font-sans min-h-[90vh]">
         {/* navbar */}
-        <Navbar />
+        <Navbar user={user} />
         {/* content */}
         <div>
           <h1 className="text-2xl font-bold">Dashboard</h1>

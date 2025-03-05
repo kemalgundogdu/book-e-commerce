@@ -22,6 +22,16 @@ export const getBook = async (name) => {
 };
 
 export const searchBooks = async (name) => {
-  const response = await axios.get(`${import.meta.env.VITE_API_URL}book/s/${name}`);
+  const response = await axios.get(
+    `${import.meta.env.VITE_API_URL}book/s/${name}`
+  );
   return response.data;
 };
+
+export const updateBook = async(book) => {
+  const response = await axios.put(
+    `${import.meta.env.VITE_API_URL}book/update/${book._id}`,
+    book
+  );
+  return response.data;
+}

@@ -33,6 +33,43 @@ const oneBook = async (req, res) => {
   }
 };
 
+const oneUpdateBook = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const {
+      name,
+      image,
+      author,
+      category,
+      shortDescription,
+      longDescription,
+      oldPrice,
+      price,
+      sku,
+    } = req.body;
+    if (!id) return res.status(400).json({ message: "Book id is required" });
+    const book = await Book.findByIdAndUpdate(
+      id,
+      {
+        name,
+        image,
+        author,
+        category,
+        shortDescription,
+        longDescription,
+        oldPrice,
+        price,
+        sku,
+      },
+      { new: true }
+    );
+    if (!book) return res.status(400).json({ message: "Book not found" });
+    res.status(200).json(book);
+  } catch (error) {
+    res.status(400).json({ message: "Book not find", error });
+  }
+};
+
 const searchBook = async (req, res) => {
   try {
     const { name } = req.params;
@@ -78,4 +115,4 @@ const createBook = async (req, res) => {
   }
 };
 
-module.exports = { createBook, allListBook, categoryBook, oneBook, searchBook };
+module.exports = { createBook, allListBook, categoryBook, oneBook, searchBook, oneUpdateBook };

@@ -19,6 +19,7 @@ import NotFound from "./pages/404";
 // admin pages
 import AdminHome from "./pages/Admin";
 import Products from "./pages/Admin/Products";
+import ProductEdit from "./pages/Admin/ProductEdit";
 
 // login control
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -78,6 +79,7 @@ function App() {
           <Route path="/admin/" element={<AdminHome />} />
           <Route path="/admin/home" element={<AdminHome />} />
           <Route path="/admin/products" element={<Products />} />
+          <Route path="/admin/productedit/:slug" element={<ProductEdit />} />
           {/* 404 */}
           <Route path="*" element={<NotFound />} />
         </Routes>

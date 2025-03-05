@@ -5,15 +5,28 @@ import Footer from "../../components/Footer";
 // formik
 import { Formik, Form, Field } from "formik";
 // router
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 // api
 import { getBook, updateBook } from "../../api/booksApi";
 // toast
 import { toast } from "react-toastify";
+// redux
+import { useSelector } from "react-redux";
+import { selectUser } from "../../stores/Auth.jsx";
 
 function ProductEdit() {
   const [book, setBook] = useState({});
   const { slug } = useParams();
+
+  const navigate = useNavigate();
+  const reduxUser = useSelector(selectUser);
+
+  // admin control
+  useEffect(() => {
+    if (reduxUser && reduxUser.role !== "admin") {
+      navigate("/");
+    }
+  }, [reduxUser]);
 
   useEffect(() => {
     const fetchBook = async () => {
@@ -37,7 +50,10 @@ function ProductEdit() {
     <div>
       <HeaderUp />
       <div className="max-w-7xl mx-auto py-8 font-sans min-h-[90vh]">
-        <h1 className="text-2xl font-bold text-center w-full block border-b border-[#E6E6E6] pb-3 mb-6">Edit Book: <span className="text-sm opacity-60 font-light">{book.name}</span></h1>
+        <h1 className="text-2xl font-bold text-center w-full block border-b border-[#E6E6E6] pb-3 mb-6">
+          Edit Book:{" "}
+          <span className="text-sm opacity-60 font-light">{book.name}</span>
+        </h1>
         <Formik
           initialValues={{
             name: book.name || "",

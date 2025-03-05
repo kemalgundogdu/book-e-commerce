@@ -1,6 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // api
-import { login, getCurrentUser, logout } from "../api/userApi";
+import { login, getCurrentUser, logout, allUsers } from "../api/userApi";
+
+// all users thunk
+export const allUsersAsync = createAsyncThunk(
+  "users/allUsers",
+  async (_, { rejectWithValue }) => {
+    try {
+      const users = await allUsers();
+      return users;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.message || "Not authorized");
+    }
+  }
+);
 
 // login thunk
 export const loginAsync = createAsyncThunk(
@@ -38,6 +51,7 @@ export const userSlice = createSlice({
   name: "auth",
   initialState: {
     user: null,
+    users: [], // Tüm kullanıcılar için yeni alan
     status: "idle",
     error: null,
   },
@@ -77,9 +91,21 @@ export const userSlice = createSlice({
       .addCase(logoutAsync.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
+      })
+      .addCase(allUsersAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(allUsersAsync.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.users = action.payload;
+      })
+      .addCase(allUsersAsync.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload;
       });
   },
 });
 
 export const selectUser = (state) => state.auth?.user || null;
+export const selectUsers = (state) => state.auth?.users || [];
 export const selectStatus = (state) => state.auth?.status || "idle";

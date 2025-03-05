@@ -41,3 +41,14 @@ export const logout = async () => {
     return error.response.data;
   }
 };
+
+export const allUsers = async () => {
+  try {
+    const response = await api.get(`user/all`, {
+      withCredentials: true, // Cookie’yi göndermek için
+    });
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+}

@@ -1,11 +1,11 @@
 # Photos
 
 
-[Home Page](./home.png)  
-[Book Detail Page](./bookDetail.png)
-[Cart Page](./cart.png)
-[Login Page](./login.png)
-[Admin Page](./adminProducts.png)
+<a href="./home.png" target="_blank">Home Page</a>  
+<a href="./bookDetail.png" target="_blank">Book Detail Page</a>  
+<a href="./cart.png" target="_blank">Cart Page</a>  
+<a href="./login.png" target="_blank">Login Page</a>  
+<a href="./adminProducts.png" target="_blank">Admin Page</a>  
 
 # EN - Book E-Commerce
 

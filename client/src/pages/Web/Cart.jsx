@@ -110,12 +110,16 @@ function Home() {
           </div>
           {cart.length !== 0 && (
             <div className="w-full md:w-2/6 p-7 rounded-2xl border border-[#E6E6E6]">
-              <div className="flex justify-between items-center py-3 pr-6 pl-10">
+              <div className="flex justify-between items-center p-3">
                 <p className="font-semibold text-lg">Total</p>
                 <p className="font-semibold text-lg">
                   ${formattedPrice(totalPrice)}
                 </p>
               </div>
+
+              <button className="bg-[#FF4C29] text-white px-6 py-2 rounded-lg cursor-pointer w-full">
+                Checkout
+              </button>
             </div>
           )}
         </div>

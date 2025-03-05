@@ -1,3 +1,12 @@
+# Photos
+
+
+[Home Page](./home.png)  
+[Book Detail Page](./bookDetail.png)
+[Cart Page](./cart.png)
+[Login Page](./login.png)
+[Admin Page](./adminProducts.png)
+
 # EN - Book E-Commerce
 
 This project is a book e-commerce application developed using React and Vite. Users can register, log in, add products to the cart, and place orders. Admins can add, edit, and delete products from the management panel and view users.

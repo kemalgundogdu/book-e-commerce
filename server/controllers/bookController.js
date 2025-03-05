@@ -1,4 +1,6 @@
 const Book = require("../models/Books");
+// slugify
+const slugify = require("slugify");
 
 const allListBook = async (req, res) => {
   try {
@@ -86,33 +88,64 @@ const createBook = async (req, res) => {
   try {
     const {
       name,
-      slug,
       image,
       author,
       category,
       shortDescription,
       longDescription,
-      oldPrice,
       price,
       sku,
     } = req.body;
+    if (
+      !name ||
+      !image ||
+      !author ||
+      !category ||
+      !shortDescription ||
+      !longDescription ||
+      !price ||
+      !sku
+    )
+      return res.status(400).json({ message: "All fields are required" });
+
+    // slug
+    const nameSlug = slugify(name, { lower: true });
     const newBook = new Book({
       name,
-      slug,
+      slug: nameSlug,
       image,
       author,
       category,
       shortDescription,
       longDescription,
-      oldPrice,
       price,
       sku,
     });
     await newBook.save();
-    res.status("200").json(newBook);
+    res.status(200).json(newBook);
   } catch (error) {
     res.status(400).json({ message: "Book could not be created", error });
   }
 };
 
-module.exports = { createBook, allListBook, categoryBook, oneBook, searchBook, oneUpdateBook };
+const deleteBook = async (req, res) => {
+  try {
+    const { id } = req.params;
+    if (!id) return res.status(400).json({ message: "Book id is required" });
+    const book = await Book.findByIdAndDelete(id);
+    if (!book) return res.status(400).json({ message: "Book not found" });
+    res.status(200).json({ message: "Book deleted successfully" });
+  } catch (error) {
+    res.status(400).json({ message: "Book not find", error });
+  }
+};
+
+module.exports = {
+  createBook,
+  allListBook,
+  categoryBook,
+  oneBook,
+  searchBook,
+  oneUpdateBook,
+  deleteBook,
+};

@@ -20,6 +20,7 @@ import NotFound from "./pages/404";
 import AdminHome from "./pages/Admin";
 import Products from "./pages/Admin/Products";
 import ProductEdit from "./pages/Admin/ProductEdit";
+import ProductAdd from "./pages/Admin/ProductAdd";
 import Users from "./pages/Admin/Users";
 
 // login control
@@ -81,6 +82,7 @@ function App() {
           <Route path="/admin/home" element={<AdminHome />} />
           <Route path="/admin/products" element={<Products />} />
           <Route path="/admin/productedit/:slug" element={<ProductEdit />} />
+          <Route path="/admin/newProduct" element={<ProductAdd />} />
           <Route path="/admin/users" element={<Users />} />
           {/* 404 */}
           <Route path="*" element={<NotFound />} />

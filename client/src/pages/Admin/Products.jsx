@@ -14,6 +14,8 @@ import { RxPencil2 } from "react-icons/rx";
 import { AiFillDelete } from "react-icons/ai";
 // router
 import { Link } from "react-router-dom";
+// api
+import { deleteBook } from "../../api/booksApi";
 
 function AdminHome() {
   const navigate = useNavigate();
@@ -37,6 +39,13 @@ function AdminHome() {
 
     setBooks(reduxBooks);
   }, [dispatch, reduxBooks]);
+
+  const handleDelete = async (id) => {
+    const response = await deleteBook(id);
+    if (response) {
+      dispatch(fetchBooks());
+    }
+  };
   return (
     <div>
       <HeaderUp />
@@ -45,8 +54,20 @@ function AdminHome() {
         <Navbar user={user} />
         {/* content */}
         <div>
-          <h1 className="text-2xl font-bold">Products</h1>
-          <p>On this page you can edit, delete products and share a new one.</p>
+          <div className="flex items-center justify-between w-full mb-10 mt-5">
+            <div>
+              <h1 className="text-2xl font-bold">Products</h1>
+              <p>
+                On this page you can edit, delete products and share a new one.
+              </p>
+            </div>
+            <Link
+              to={"/admin/newProduct/"}
+              className="bg-green-400 text-sm border border-transparent text-white px-4 py-2 rounded inline-block hover:bg-transparent hover:border-green-400 hover:text-green-400 transition-colors"
+            >
+              New Product
+            </Link>
+          </div>
 
           {/* books table */}
           <table className="w-full mt-4 text-xs">
@@ -75,10 +96,16 @@ function AdminHome() {
                     {book.category}
                   </td>
                   <td className="border border-[#E6E6E6] py-2 text-lg flex items-center justify-center gap-2">
-                    <Link to={`/admin/productedit/${book.slug}`} className="p-2 rounded-full cursor-pointer hover:bg-gray-200 transition-colors">
+                    <Link
+                      to={`/admin/productedit/${book.slug}`}
+                      className="p-2 rounded-full cursor-pointer hover:bg-gray-200 transition-colors"
+                    >
                       <RxPencil2 />
                     </Link>
-                    <button className="p-2 rounded-full cursor-pointer hover:bg-gray-200 transition-colors">
+                    <button
+                      onClick={() => handleDelete(book._id)}
+                      className="p-2 rounded-full cursor-pointer hover:bg-gray-200 transition-colors"
+                    >
                       <AiFillDelete />
                     </button>
                   </td>
